@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import store from './store/store';
 import { BrowserRouter } from 'react-router-dom';
-import App from "./App";
+import Page from "./pages/Page";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 
@@ -11,7 +11,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Header/>
     <BrowserRouter>
-      <App/>
+      <Page/>
     </BrowserRouter>
     <Footer/>
   </Provider>,

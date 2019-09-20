@@ -1,6 +1,13 @@
 import * as React from 'react';
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
+import {
+  MDBNavbar,
+  MDBNavbarNav,
+  MDBNavItem,
+  MDBNavLink,
+  MDBNavbarToggler,
+  MDBCollapse,
+  MDBIcon
+} from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 export default class Header extends React.Component<any, any> {
@@ -19,22 +26,20 @@ export default class Header extends React.Component<any, any> {
           <MDBNavbarToggler onClick={this.toggleCollapse} />
           <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
             <MDBNavbarNav left>
-              <MDBNavItem active>
-                <MDBNavLink className="text-dark" to="#!">
-                  <MDBIcon icon="home" />
-                </MDBNavLink>
-              </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink className="text-dark">ВКС России, гроза всея галактики!</MDBNavLink>
+                <MDBNavLink className="text-dark" to="/">
+                  <MDBIcon icon="home" />&nbsp;
+                  ВКС России, гроза всея галактики!
+                </MDBNavLink>
               </MDBNavItem>
             </MDBNavbarNav>
             <MDBNavbarNav right>
               <MDBNavItem>
-                <MDBNavLink className="text-dark" to="#!">Наш флот</MDBNavLink>
+                <MDBNavLink className="text-dark" to="/starships-list/">Наш флот</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
                 <MDBNavLink className="waves-effect waves-light text-dark" to="#!">
-                  <MDBIcon fas icon="search" />
+                  <MDBIcon icon="search" />
                 </MDBNavLink>
               </MDBNavItem>
             </MDBNavbarNav>
