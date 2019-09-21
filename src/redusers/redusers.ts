@@ -16,7 +16,7 @@ export default function reducer(state: IGlobalState = initialState, action: IAct
   let newState = { ...state };
 
   switch (action.type) {
-    case 'GETLIST_BEGIN':
+    case 'LOAD_PAGE':
       newState.isLoading = true;
       newState.isError = false;
       break;
@@ -26,13 +26,25 @@ export default function reducer(state: IGlobalState = initialState, action: IAct
       newState.errorText = action.payload;
       break;
     case 'GETLIST_SUCCESS':
-      newState.starShipsList = action.list;
+      newState.starShipsList = action.payload;
       newState.nextPage = action.next;
       newState.prevPage = action.previous;
       newState.count = action.count;
       newState.isLoading = false;
       newState.isError = false;
       newState.errorText = '';
+      break;
+    case 'GETDETAILS_ERROR':
+      newState.isError = true;
+      newState.isLoading = false;
+      newState.errorText = action.payload;
+      break;
+    case 'GETDETAILS_SUCCESS':
+      newState.starShipsDetails = action.payload;
+      newState.isLoading = false;
+      newState.isError = false;
+      newState.errorText = '';
+      break;
   }
 
   return newState;

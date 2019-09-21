@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
-  MDBBtn,
   MDBIcon,
   MDBListGroup,
   MDBListGroupItem
 } from "mdbreact";
-import {IStarship} from "../../models/Models";
+import { IStarship } from "../../models/Models";
+import { Link } from 'react-router-dom';
 
 interface IProps {
   item: IStarship;
@@ -26,10 +26,6 @@ export default class Item extends React.Component<IProps, IState> {
   showDetails = () => this.setState({
     showDetails: this.state.showDetails ? false : true
   });
-
-  goToDetailsPage = () => {
-      console.log(this.props.item.url);
-  };
 
   render() {
     const { item } = this.props;
@@ -56,7 +52,7 @@ export default class Item extends React.Component<IProps, IState> {
                 { item.consumables }
               </MDBListGroupItem>
             </MDBListGroup>
-            <MDBBtn color="primary" onClick={this.goToDetailsPage}>Подробнее</MDBBtn>
+            <Link to={`/starship-details/${item.id}`}>Подробнее</Link>
           </div>
         )}
       </MDBListGroupItem>

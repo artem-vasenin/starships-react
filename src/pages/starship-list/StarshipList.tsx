@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {
+  MDBBtn,
   MDBCard,
   MDBCardBody, MDBCardText,
   MDBCardTitle,
   MDBCol,
-  MDBContainer,
+  MDBContainer, MDBIcon,
   MDBListGroup,
   MDBRow,
 } from "mdbreact";
@@ -19,7 +20,7 @@ interface IProps {
   isError: boolean;
   errorText: string;
   list: IStarship[];
-  getList(value: string | null): IActions;
+  getList(value: string | null): IStarship[];
 }
 
 interface IState {
@@ -44,14 +45,6 @@ class StarshipList extends React.Component<IProps, IState> {
 
   componentDidMount(): void {
     this.props.getList(null);
-  }
-
-  getSnapshotBeforeUpdate(newProps, state) {
-    if (newProps.list !== state.list) {
-      return {
-        list: newProps.list
-      };
-    }
   }
 
   render() {
@@ -85,6 +78,15 @@ class StarshipList extends React.Component<IProps, IState> {
                       <Item key={index} item={item}>{ item.name }</Item>
                     )) }
                   </MDBListGroup>
+
+                  <div className='d-flex justify-content-between'>
+                    <MDBBtn color="primary" rounded>
+                      <MDBIcon icon="angle-double-left" size="1x"/>
+                    </MDBBtn>
+                    <MDBBtn color="primary" rounded>
+                      <MDBIcon icon="angle-double-right" size="1x"/>
+                    </MDBBtn>
+                  </div>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -102,8 +104,10 @@ const mapStateToProps = (state: IGlobalState) => ({
     list: state.starShipsList,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IActions>) => ({
-    getList: (value: string | null) => dispatch(getList(value))
-});
+const mapDispatchToProps = (dispatch: Dispatch<IActions>) => {
+  return {
+    getList: (value) => dispatch(getList(value))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StarshipList);

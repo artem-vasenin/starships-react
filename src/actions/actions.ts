@@ -12,7 +12,7 @@ export function search(text: string) {
 
 export function getList(value: string | null) {
   return async (dispatch: Dispatch<IActions>) => {
-    dispatch({type: 'GETLIST_BEGIN', payload: value});
+    dispatch({type: 'LOAD_PAGE', payload: null});
 
     try {
       const url = value ? `${baseURL}starships/?search=${value}` : `${baseURL}starships/`;
@@ -24,17 +24,59 @@ export function getList(value: string | null) {
 
       dispatch({
         type: 'GETLIST_SUCCESS',
-        payload: value,
-        list: data.results,
+        payload: data.results.map((item, index) => {
+          const segments = item.url.split('/');
+          return {
+            ...item,
+            id: Number(segments[segments.length - 2]),
+          };
+        }),
         next: data.next,
         previous: data.previous,
         count: data.count,
-        searchValue: value,
+      });
+    } catch (e) {
+      dispatch({ type: 'GETLIST_ERROR', payload: 'Ошибка загрузки списка' })
+    }
+  }
+}
+
+export function getDetailsPage(value: string) {
+  return async (dispatch: Dispatch<IActions>) => {
+    dispatch({type: 'LOAD_PAGE', payload: null});
+
+    const addDetailsItems = (obj) => {
+      let items = [];
+      for (let key in obj) {
+        let value = null;
+        if (Array.isArray(obj[key]) || key === 'url' || key === 'films' || key === 'pilots') {
+          continue;
+        } else {
+          value = obj[key];
+        }
+        items.push({name: key, value: value});
+      }
+      return items;
+    };
+
+    try {
+      const response = await fetch(value, {
+        method: 'get',
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+      });
+      const data = await response.json();
+      const segments = data.url.split('/');
+      data.id = Number(segments[segments.length - 2]);
+      data.rows = addDetailsItems(data);
+
+      dispatch({
+        type: 'GETDETAILS_SUCCESS',
+        payload: data,
       });
     } catch (e) {
       dispatch({
-        type: 'GETLIST_ERROR',
-        payload: 'Ошибка загрузка списка',
+        type: 'GETDETAILS_ERROR',
+        payload: 'Ошибка загрузки информации по кораблю',
       })
     }
   }

@@ -22,7 +22,7 @@ export default class Page extends React.Component {
       <main className="main py-5">
         <Switch>
           <Route exact path='/' component={ Home }/>
-          <Route path='/starship-details/' component={ StarShipDetails }/>
+          <Route path='/starship-details/:id' component={ StarShipDetails }/>
           <Route path='/starships-list/' component={ StarShipsList }/>
         </Switch>
       </main>

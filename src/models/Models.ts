@@ -29,6 +29,8 @@ export interface IStarship {
   pilots: any[]
   starship_class: string;
   url: string;
+  id: number;
+  rows?: [];
 }
 
 export interface IActions {
