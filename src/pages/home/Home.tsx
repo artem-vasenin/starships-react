@@ -7,9 +7,9 @@ import {
   MDBCardTitle,
   MDBCol,
   MDBContainer,
-  MDBNavLink,
   MDBRow
 } from "mdbreact";
+import { Link } from 'react-router-dom';
 
 interface IProps {
 
@@ -35,7 +35,7 @@ export default class Home extends React.Component<IProps, IState> {
                   </MDBCardText>
                   <MDBRow end>
                     <MDBCol size="4" style={{ textAlign: "right" }}>
-                      <MDBNavLink to="/starships-list/">Наш флот</MDBNavLink>
+                      <Link to="/starships-list/">Наш флот</Link>
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>

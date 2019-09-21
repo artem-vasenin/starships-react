@@ -8,7 +8,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import '../assets/styles/main.scss';
-import {Provider} from "react-redux";
+import Footer from "../components/footer/Footer";
+import Header from "../components/header/Header";
 
 // const img = require('./assets/images/test.jpg');
 // <img src={img} alt="Image"/>
@@ -16,6 +17,8 @@ import {Provider} from "react-redux";
 export default class Page extends React.Component {
   render() {
     return (
+    <div className={'site-wrap'}>
+      <Header/>
       <main className="main py-5">
         <Switch>
           <Route exact path='/' component={ Home }/>
@@ -23,6 +26,8 @@ export default class Page extends React.Component {
           <Route path='/starships-list/' component={ StarShipsList }/>
         </Switch>
       </main>
+      <Footer/>
+    </div>
     );
   }
 };
