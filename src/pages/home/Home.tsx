@@ -11,13 +11,8 @@ import {
 } from "mdbreact";
 import { Link } from 'react-router-dom';
 
-interface IProps {
-
-}
-
-interface IState {
-
-}
+interface IProps { }
+interface IState { }
 
 export default class Home extends React.Component<IProps, IState> {
   render() {
@@ -25,7 +20,7 @@ export default class Home extends React.Component<IProps, IState> {
       <section className='home'>
         <MDBContainer>
           <MDBRow center>
-            <MDBCol size="10">
+            <MDBCol size="12" xs="12" lg="10">
               <MDBCard style={{ width: "100%" }}>
                 <MDBCardImage className="img-fluid" src="https://vignette.wikia.nocookie.net/starwars/images/d/da/Executorbridge.jpg/revision/latest/scale-to-width-down/1000?cb=20120110005354" waves />
                 <MDBCardBody>
