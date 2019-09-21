@@ -42,3 +42,20 @@ export interface IActions {
   count?: number;
   searchValue?: string;
 }
+
+interface IColumn {
+  label: string;
+  field: string;
+  sort: string;
+  width: number;
+}
+
+interface IRow {
+  name: string;
+  value: string;
+}
+
+export interface ITable {
+  columns: IColumn[];
+  rows: IRow[];
+}

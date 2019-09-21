@@ -11,7 +11,7 @@ import {
 } from "mdbreact";
 import {getDetailsPage} from "../../actions/actions";
 import {connect} from "react-redux";
-import {IActions, IGlobalState, IStarship} from "../../models/Models";
+import {IActions, IGlobalState, IStarship, ITable} from "../../models/Models";
 import {Dispatch} from "redux";
 
 interface IProps {
@@ -23,7 +23,7 @@ interface IProps {
   match: any;
 }
 interface IState {
-  data: Object;
+  data: ITable;
 }
 
 class StarshipDetails extends React.Component<IProps, IState> {
@@ -50,14 +50,17 @@ class StarshipDetails extends React.Component<IProps, IState> {
     }
   }
 
+  /** Получение детальной информации по ID корабля */
   getDetailsPage = () => {
     this.props.getDetailsPage(`https://swapi.co/api/starships/${this.props.match.params.id}/`);
   };
 
+  /** Подгружаем данные когда компонент примонтирован */
   componentDidMount(): void {
     this.getDetailsPage();
   }
 
+  /** Ждем появления данных и добавляем в стейт информацию по кораблю */
   static getDerivedStateFromProps(nextProps, prevState) {
     return {
       data: {
@@ -96,8 +99,7 @@ class StarshipDetails extends React.Component<IProps, IState> {
                   <MDBCardBody>
                     <MDBCardTitle>{ starShipsDetails.name }</MDBCardTitle>
                     <MDBDataTable
-                      striped
-                      hover
+                      paging={false}
                       data={this.state.data}
                     />
                   </MDBCardBody>

@@ -10,6 +10,10 @@ export function search(text: string) {
   };
 }
 
+/**
+ * Загрузка списка кораблей на странице "Наш флот"
+ * @param value строка поиска по имени или null
+ */
 export function getList(value: string | null) {
   return async (dispatch: Dispatch<IActions>) => {
     dispatch({type: 'LOAD_PAGE', payload: null});
@@ -41,6 +45,10 @@ export function getList(value: string | null) {
   }
 }
 
+/**
+ * Получение детальной информации для корабля по его ID
+ * @param value url для получения данных по кораблю
+ */
 export function getDetailsPage(value: string) {
   return async (dispatch: Dispatch<IActions>) => {
     dispatch({type: 'LOAD_PAGE', payload: null});
@@ -66,8 +74,8 @@ export function getDetailsPage(value: string) {
       });
       const data = await response.json();
       const segments = data.url.split('/');
-      data.id = Number(segments[segments.length - 2]);
       data.rows = addDetailsItems(data);
+      data.id = Number(segments[segments.length - 2]);
 
       dispatch({
         type: 'GETDETAILS_SUCCESS',
