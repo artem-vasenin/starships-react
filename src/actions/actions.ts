@@ -28,7 +28,41 @@ export function getList(value: string | null) {
 
       dispatch({
         type: 'GETLIST_SUCCESS',
-        payload: data.results.map((item, index) => {
+        payload: data.results.map(item => {
+          const segments = item.url.split('/');
+          return {
+            ...item,
+            id: Number(segments[segments.length - 2]),
+          };
+        }),
+        next: data.next,
+        previous: data.previous,
+        count: data.count,
+      });
+    } catch (e) {
+      dispatch({ type: 'GETLIST_ERROR', payload: 'Ошибка загрузки списка' })
+    }
+  }
+}
+
+/**
+ * Загрузка страницы пагинации списка кораблей на странице "Наш флот"
+ * @param value url следующей или предыдущей старницы
+ */
+export function changePage(value: string) {
+  return async (dispatch: Dispatch<IActions>) => {
+    dispatch({type: 'LOAD_PAGE', payload: null});
+
+    try {
+      const response = await fetch(value, {
+        method: 'get',
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
+      });
+      const data = await response.json();
+
+      dispatch({
+        type: 'GETLIST_SUCCESS',
+        payload: data.results.map(item => {
           const segments = item.url.split('/');
           return {
             ...item,

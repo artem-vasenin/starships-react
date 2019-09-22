@@ -12,7 +12,7 @@ import {
 import {IActions, IGlobalState, IStarship} from "../../models/Models";
 import {connect} from "react-redux";
 import Item from "./Item";
-import {getList} from "../../actions/actions";
+import {changePage, getList} from "../../actions/actions";
 import {Dispatch} from "redux";
 
 interface IProps {
@@ -20,7 +20,11 @@ interface IProps {
   isError: boolean;
   errorText: string;
   list: IStarship[];
+  nextPage: string | null,
+  prevPage: string | null,
+  count: number,
   getList(value: string | null): IStarship[];
+  changePage(value: string): IStarship[];
 }
 
 interface IState {
@@ -80,10 +84,21 @@ class StarshipList extends React.Component<IProps, IState> {
                   </MDBListGroup>
 
                   <div className='d-flex justify-content-between'>
-                    <MDBBtn color="primary" rounded>
+                    {  }
+                    <MDBBtn
+                      color="primary"
+                      rounded
+                      disabled={!this.props.prevPage}
+                      onClick={() => this.props.changePage(this.props.prevPage)}
+                    >
                       <MDBIcon icon="angle-double-left" size="1x"/>
                     </MDBBtn>
-                    <MDBBtn color="primary" rounded>
+                    <MDBBtn
+                      color="primary"
+                      rounded
+                      disabled={!this.props.nextPage}
+                      onClick={() => this.props.changePage(this.props.nextPage)}
+                    >
                       <MDBIcon icon="angle-double-right" size="1x"/>
                     </MDBBtn>
                   </div>
@@ -102,11 +117,15 @@ const mapStateToProps = (state: IGlobalState) => ({
     isError: state.isError,
     errorText: state.errorText,
     list: state.starShipsList,
+    nextPage: state.nextPage,
+    prevPage: state.prevPage,
+    count: state.count,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<IActions>) => {
   return {
-    getList: (value) => dispatch(getList(value))
+    getList: (value) => dispatch(getList(value)),
+    changePage: (value) => dispatch(changePage(value)),
   };
 };
 
