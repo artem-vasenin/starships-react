@@ -3,13 +3,6 @@ import {IActions} from '../models/Models';
 
 const baseURL = 'https://swapi.co/api/';
 
-export function search(text: string) {
-  return {
-    type: search,
-    text: text
-  };
-}
-
 /**
  * Загрузка списка кораблей на странице "Наш флот"
  * @param value строка поиска по имени или null

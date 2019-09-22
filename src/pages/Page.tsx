@@ -11,9 +11,6 @@ import '../assets/styles/main.scss';
 import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 
-// const img = require('./assets/images/test.jpg');
-// <img src={img} alt="Image"/>
-
 export default class Page extends React.Component {
   render() {
     return (

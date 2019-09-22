@@ -11,13 +11,12 @@ import {
   MDBModalHeader,
   MDBModalBody,
   MDBModalFooter,
-  MDBBtn,
   MDBInput,
 } from "mdbreact";
-import {IActions, IGlobalState, IStarship} from "../../models/Models";
-import {Dispatch} from "redux";
-import {changePage, getList} from "../../actions/actions";
-import {connect} from "react-redux";
+import { IActions, IStarship } from "../../models/Models";
+import { Dispatch } from "redux";
+import { getList } from "../../actions/actions";
+import { connect } from "react-redux";
 
 interface IProps {
   getList(value: string): IStarship[];
@@ -35,21 +34,27 @@ class Header extends React.Component<IProps, IState> {
     search: '',
   };
 
+  /** Показать/скрыть выпадающее мобильное меню */
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  /** Показать/скрыть модальное окно поиска корабля */
   toggleModal = () => {
     this.setState({
-      modal: !this.state.modal
+      ...this.state,
+      modal: !this.state.modal,
+      search: '',
     });
   };
 
+  /** Получить список кораблей по поисковому запросу */
   getList = () => {
     this.props.getList(this.state.search);
     this.setState({ modal: !this.state.modal });
   };
 
+  /** Обновление данных в поисковой строке */
   changeSearch = (e) => {
     this.setState({
       search: e.target.value

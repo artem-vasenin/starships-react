@@ -1,0 +1,8 @@
+.starships-list {
+  &__item {
+    &:hover {
+      cursor: pointer;
+      background: $gray-100;
+    }
+  }
+}

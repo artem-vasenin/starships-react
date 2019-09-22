@@ -11,10 +11,7 @@ import {
 } from "mdbreact";
 import { Link } from 'react-router-dom';
 
-interface IProps { }
-interface IState { }
-
-export default class Home extends React.Component<IProps, IState> {
+export default class Home extends React.Component<any, any> {
   render() {
     return (
       <section className='home'>

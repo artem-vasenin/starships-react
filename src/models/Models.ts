@@ -1,3 +1,4 @@
+// Модель глобального стора приложения
 export interface IGlobalState {
   dialog: boolean;
   count: number;
@@ -10,6 +11,7 @@ export interface IGlobalState {
   isLoading: boolean;
 }
 
+// Модель данных по кораблю
 export interface IStarship {
   MGLT: string;
   cargo_capacity: string;
@@ -33,6 +35,7 @@ export interface IStarship {
   rows?: [];
 }
 
+// Модель отправляемого экшина
 export interface IActions {
   type: string;
   payload: any;
@@ -43,18 +46,17 @@ export interface IActions {
   searchValue?: string;
 }
 
+// Модель таблицы параметров корабля на странице детальной информации
 interface IColumn {
   label: string;
   field: string;
   sort: string;
   width: number;
 }
-
 interface IRow {
   name: string;
   value: string;
 }
-
 export interface ITable {
   columns: IColumn[];
   rows: IRow[];

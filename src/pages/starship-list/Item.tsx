@@ -23,14 +23,15 @@ export default class Item extends React.Component<IProps, IState> {
     }
   }
 
-  showDetails = () => this.setState({
-    showDetails: this.state.showDetails ? false : true
+  /** показать/скрыть раткую информацию по кораблю */
+  toggleDetails = () => this.setState({
+    showDetails: !this.state.showDetails
   });
 
   render() {
     const { item } = this.props;
     return (
-      <MDBListGroupItem onClick={this.showDetails}>
+      <MDBListGroupItem className="starships-list__item" onClick={this.toggleDetails}>
         <h6 className="text-uppercase">{ item.name }</h6>
         { this.state.showDetails && (
           <div>
