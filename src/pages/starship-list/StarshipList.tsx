@@ -23,6 +23,7 @@ interface IProps {
   nextPage: string | null,
   prevPage: string | null,
   count: number,
+  match: any;
   getList(value: string | null): IStarship[];
   changePage(value: string): IStarship[];
 }

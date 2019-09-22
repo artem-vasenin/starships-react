@@ -30,7 +30,7 @@ export default class Home extends React.Component<IProps, IState> {
                   </MDBCardText>
                   <MDBRow end>
                     <MDBCol size="4" style={{ textAlign: "right" }}>
-                      <Link to="/starships-list/">Наш флот</Link>
+                      <Link to="/starships-list/null">Наш флот</Link>
                     </MDBCol>
                   </MDBRow>
                 </MDBCardBody>
