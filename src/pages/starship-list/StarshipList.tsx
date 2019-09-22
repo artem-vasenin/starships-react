@@ -123,10 +123,10 @@ const mapStateToProps = (state: IGlobalState) => ({
     count: state.count,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IActions>) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getList: (value) => dispatch(getList(value)),
-    changePage: (value) => dispatch(changePage(value)),
+    getList: (value: string | null) => dispatch(getList(value)),
+    changePage: (value: string) => dispatch(changePage(value)),
   };
 };
 

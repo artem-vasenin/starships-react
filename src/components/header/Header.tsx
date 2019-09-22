@@ -115,9 +115,9 @@ class Header extends React.Component<IProps, IState> {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = (dispatch: Dispatch<IActions>) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getList: (value) => dispatch(getList(value)),
+    getList: (value: string | null) => dispatch(getList(value)),
   };
 };
 

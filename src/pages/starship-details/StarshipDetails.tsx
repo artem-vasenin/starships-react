@@ -120,9 +120,9 @@ const mapStateToProps = (state: IGlobalState) => ({
   starShipsDetails: state.starShipsDetails,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IActions>) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getDetailsPage: (value) => dispatch(getDetailsPage(value))
+    getDetailsPage: (value: string) => dispatch(getDetailsPage(value))
   };
 };
 
