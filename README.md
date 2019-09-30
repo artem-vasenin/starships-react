@@ -14,7 +14,11 @@ API https://swapi.co/documentation
 
 Endpoints
 · /starships/ -- get all the starship resources
+
 · /starships/:id/ -- get a specific starship resource
+
 · /starships/schema/ -- view the JSON schema for this resource
 
 Итоговая работа должна быть в формате ссылки на репозиторий.
+
+Демо находится тут: http://demo-react.rusich69.ru/
