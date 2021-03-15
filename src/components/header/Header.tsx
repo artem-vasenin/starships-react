@@ -13,8 +13,7 @@ import {
   MDBModalFooter,
   MDBInput,
 } from "mdbreact";
-import { IActions, IStarship } from "../../models/Models";
-import { Dispatch } from "redux";
+import { IStarship } from "../../models/Models";
 import { getList } from "../../actions/actions";
 import { connect } from "react-redux";
 
@@ -62,7 +61,7 @@ class Header extends React.Component<IProps, IState> {
   };
 
   render() {
-    return (
+      return (
       <>
         <MDBNavbar color="header grey lighten-2" light expand="md">
           <MDBNavbarToggler onClick={this.toggleCollapse} />
@@ -88,32 +87,32 @@ class Header extends React.Component<IProps, IState> {
           </MDBCollapse>
         </MDBNavbar>
 
-        <MDBModal isOpen={this.state.modal} toggle={this.toggleModal}>
-          <MDBModalHeader toggle={this.toggleModal}>Поиск по наименованию корабля</MDBModalHeader>
-          <MDBModalBody>
-            <MDBInput
-              label="Введите название корабля"
-              onChange={this.changeSearch}
-            />
-          </MDBModalBody>
-          <MDBModalFooter>
-            <MDBNavLink
-              onClick={this.toggleModal}
-              to=""
-            >Закрыть</MDBNavLink>
-            <MDBNavLink
-              disabled={!this.state.search}
-              onClick={this.getList}
-              to={`/starships-list/${this.state.search}`}
-            >Найти</MDBNavLink>
-          </MDBModalFooter>
-        </MDBModal>
+        {// @ts-ignore
+            (<MDBModal isOpen={this.state.modal} toggle={this.toggleModal}>
+              <MDBModalHeader toggle={this.toggleModal}>Поиск по наименованию корабля</MDBModalHeader>
+              <MDBModalBody>
+                <MDBInput
+                  label="Введите название корабля"
+                  onChange={this.changeSearch}
+                />
+              </MDBModalBody>
+              <MDBModalFooter>
+                <MDBNavLink
+                  onClick={this.toggleModal}
+                  to=""
+                >Закрыть</MDBNavLink>
+                <MDBNavLink
+                  disabled={!this.state.search}
+                  onClick={this.getList}
+                  to={`/starships-list/${this.state.search}`}
+                >Найти</MDBNavLink>
+              </MDBModalFooter>
+            </MDBModal>)
+        }
       </>
     );
   }
 }
-
-const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -121,4 +120,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

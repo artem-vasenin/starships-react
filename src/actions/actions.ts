@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {IActions} from '../models/Models';
 
-const baseURL = 'https://swapi.co/api/';
+const baseURL = 'https://swapi.dev/api/';
 
 /**
  * Загрузка списка кораблей на странице "Наш флот"

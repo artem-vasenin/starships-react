@@ -52,7 +52,7 @@ class StarshipDetails extends React.Component<IProps, IState> {
 
   /** Получение детальной информации по ID корабля */
   getDetailsPage = () => {
-    this.props.getDetailsPage(`https://swapi.co/api/starships/${this.props.match.params.id}/`);
+    this.props.getDetailsPage(`https://swapi.dev/api/starships/${this.props.match.params.id}/`);
   };
 
   /** Подгружаем данные когда компонент примонтирован */
